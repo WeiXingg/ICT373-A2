@@ -1,12 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author wx
+ ICT373 Assignment 2
+ Ong Wei Xing 34444625
+ 26/7/2023
+ MagazineServiceHandler.java
+ MagazineServiceHandler class, to handle persistent storage of magazine service
+ and also handle creation of multiple magazine service using hashmap
  */
 
 import java.io.File;
@@ -24,27 +22,33 @@ public class MagazineServiceHandler {
     private Map<String, MagazineService> magazineServiceMap;
     private AlertHandler alert = new AlertHandler();
 
+    // Default constructor
     public MagazineServiceHandler() {
         magazineServiceMap = new HashMap<>();
     }
 
+    // Adding new magazine service and map it
     public void addMagazineService(String magazineName) {
         MagazineService magazineService = new MagazineService();
         magazineServiceMap.put(magazineName, magazineService);
     }
 
+    // Retrieving mapped magazine service
     public MagazineService getMagazineService(String magazineName) {
         return magazineServiceMap.get(magazineName);
     }
 
+    // To compare magazine name with inside hashmap
     public boolean compareMagazineName(String magazineName) {
         return magazineServiceMap.containsKey(magazineName);
     }
 
+    // Return the arraylist of all magazine service
     public ArrayList<String> getAllMagazineNames() {
         return new ArrayList<>(magazineServiceMap.keySet());
     }
 
+    // Save magazine to .ser file
     public void saveMagazineToFile(String magazineName) {
         try {
             File file = new File(magazineName + ".ser");
@@ -70,6 +74,7 @@ public class MagazineServiceHandler {
         }
     }
 
+    // Load magazine from .ser file
     public void loadMagazineFromFile(String magazineName) {
         try (FileInputStream inputFile = new FileInputStream(magazineName + ".ser");
                 ObjectInputStream objectIn = new ObjectInputStream(inputFile)) {

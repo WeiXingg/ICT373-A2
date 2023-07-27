@@ -1,7 +1,7 @@
 /*
- ICT373 Assignment 1 Question 2
+ ICT373 Assignment 2
  Ong Wei Xing 34444625
- 13/6/2023
+ 26/7/2023
  Supplement.java
  Supplement class, getters and setters for the necessary variables
  */
@@ -19,22 +19,27 @@ public class Supplement implements Serializable {
         weeklyCost = newWeeklyCost;
     }
 
+    // Getter for supplement name
     public String getName() {
         return name;
     }
 
+    // Setter for supplement name
     public void setName(String newName) {
         name = newName;
     }
 
+    // Getter for supplement cost
     public double getCost() {
         return weeklyCost;
     }
 
+    // Setter for supplement cost
     public void setCost(double newWeeklyCost) {
         weeklyCost = newWeeklyCost;
     }
 
+    // Overriding method for toString()
     @Override
     public String toString() {
         return name;

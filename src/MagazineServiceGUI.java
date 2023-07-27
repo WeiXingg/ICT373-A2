@@ -1,13 +1,9 @@
 /*
- ICT373 Assignment 1 Question 2
+ ICT373 Assignment 2
  Ong Wei Xing 34444625
- 13/6/2023
- Client.java
- Main client
- Assumptions:
- 1. User input for the variables needed are inputted correctly (no checks performed).
- 2. Only one new customer will be added and if associate customer, 
- will not be added to paying customer.
+ 26/7/2023
+ MagazineServiceGUI.java
+ MagazineServiceGUI class, implementation of GUI only
  */
 
 import java.io.File;
@@ -61,6 +57,7 @@ public class MagazineServiceGUI {
         createButton = new Button("Create");
         editButton = new Button("Edit");
 
+        // Remove focus outline of button
         viewButton.setFocusTraversable(false);
         createButton.setFocusTraversable(false);
         editButton.setFocusTraversable(false);
@@ -148,6 +145,8 @@ public class MagazineServiceGUI {
 
         Label createHeader = new Label("Choose an Option:");
         createHeader.setStyle("-fx-font-weight: bold;");
+
+        // Create buttons for different modes
         addMagazineButton = new Button("Add Magazine");
         addMagazineButton.setFocusTraversable(false);
         loadMagazineButton = new Button("Load Magazine");
@@ -160,6 +159,7 @@ public class MagazineServiceGUI {
         loadMagazineButton.setMinSize(200, 30);
         saveMagazineButton.setMinSize(200, 30);
 
+        // Add nodes to the gridPane
         root.add(createHeader, 1, 5);
         root.add(addMagazineButton, 1, 6);
         root.add(loadMagazineButton, 1, 8);
@@ -176,6 +176,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(magazineNameLabel, 0, 5);
         root.add(magazineNameTextField, 1, 5);
         root.add(submitButton, 1, 6);
@@ -184,8 +185,10 @@ public class MagazineServiceGUI {
     public void loadMagazineMode() {
         FileChooser fileChooser = new FileChooser();
 
+        // Set title of pop up box
         fileChooser.setTitle("Load Magazine File");
 
+        // Ensure only .ser file can be chosen
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Serialized Files (*.ser)", "*.ser");
         fileChooser.getExtensionFilters().add(extFilter);
 
@@ -199,6 +202,7 @@ public class MagazineServiceGUI {
         Label saveMagazineHeader = new Label("Select a magazine to save:");
         saveMagazineHeader.setStyle("-fx-font-weight: bold;");
 
+        // Create combobox for choosing magazine
         magazineChoice = new ComboBox<>();
         magazineChoice.setPromptText("Options");
         magazineChoice.setStyle("-fx-pref-width: 200px");
@@ -207,6 +211,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(saveMagazineHeader, 1, 4);
         root.add(magazineChoice, 1, 5);
         root.add(submitButton, 1, 6);
@@ -217,6 +222,8 @@ public class MagazineServiceGUI {
 
         Label editHeader = new Label("Choose an Option:");
         editHeader.setStyle("-fx-font-weight: bold;");
+
+        // Create buttons for different modes
         addSupplementButton = new Button("Add Supplement");
         addSupplementButton.setFocusTraversable(false);
         addCustomerButton = new Button("Add Customer");
@@ -229,6 +236,7 @@ public class MagazineServiceGUI {
         deleteSupplementButton.setFocusTraversable(false);
         deleteCustomerButton = new Button("Delete Customer");
         deleteCustomerButton.setFocusTraversable(false);
+
         currentMagazine = new Label("");
         currentMagazine.setStyle("-fx-font-size: 10px; -fx-font-weight: bold;");
 
@@ -240,6 +248,7 @@ public class MagazineServiceGUI {
         deleteSupplementButton.setMinSize(200, 30);
         deleteCustomerButton.setMinSize(200, 30);
 
+        // Add nodes to the gridPane
         root.add(editHeader, 1, 5);
         root.add(addSupplementButton, 1, 6);
         root.add(addCustomerButton, 1, 8);
@@ -252,6 +261,7 @@ public class MagazineServiceGUI {
 
     public void addSupplementMode() {
         homePage();
+
         Label addSupplementHeader = new Label("Add Supplement:");
         addSupplementHeader.setStyle("-fx-font-weight: bold;");
         Label supplementNameLabel = new Label("Supplement name:");
@@ -263,7 +273,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
-        // Arranging nodes in grid
+        // Add nodes to the gridPane
         root.add(addSupplementHeader, 1, 3);
         root.add(supplementNameLabel, 0, 5);
         root.add(supplementNameTextField, 1, 5);
@@ -393,9 +403,12 @@ public class MagazineServiceGUI {
 
     public void editSupplementMode() {
         homePage();
+
         // Selecting supplement
         Label supplementsLabel = new Label("Select supplement to edit:");
         supplementsLabel.setStyle("-fx-font-weight: bold;");
+
+        // Create listview for supplement choice
         supplementChoice = new ListView<>();
         supplementChoice.setStyle("-fx-pref-height: 450px");
 
@@ -403,13 +416,14 @@ public class MagazineServiceGUI {
         supplementNameTextField = new TextField();
         Label supplementCostLabel = new Label("Supplement cost:");
         supplementCostTextField = new TextField();
+
         // Create a button for submitting the data
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(supplementsLabel, 0, 3);
         root.add(supplementChoice, 0, 4, 1, 12);
-
         root.add(supplementNameLabel, 1, 12);
         root.add(supplementNameTextField, 2, 12);
         root.add(supplementCostLabel, 1, 13);
@@ -418,46 +432,56 @@ public class MagazineServiceGUI {
     }
 
     public void editCustomerMode() {
-        /*
-         ASSUMPTIONS: CANNOT EDIT TYPE OF CUSTOMER
-         */
         homePage();
+
         // Selecting customer
         Label customersLabel = new Label("Select customer to edit:");
         customersLabel.setStyle("-fx-font-weight: bold;");
         customerChoice = new ListView<>();
+
         // Customer type field
         Label customerTypeLabel = new Label("Type of customer:");
         typeOfCustomerTextField = new TextField();
         typeOfCustomerTextField.setDisable(true);
+
         // Customer name field
         Label customerNameLabel = new Label("Customer name:");
         customersNameTextField = new TextField();
+
         // Email field
         Label emailAddressLabel = new Label("Email Address:");
         emailAddressTextField = new TextField();
+
         // Street number field
         Label streetNumberLabel = new Label("Street Number:");
         streetNumberTextField = new TextField();
+
         // Street name field
         Label streetNameLabel = new Label("Street Name:");
         streetNameTextField = new TextField();
+
         // Suburb field
         Label suburbLabel = new Label("Suburb:");
         suburbTextField = new TextField();
+
         // Postcode field
         Label postcodeLabel = new Label("Postcode:");
         postCodeTextField = new TextField();
+
         // Existing supplements
         Label oldSupplementsHeader = new Label("Your supplement(s):");
         oldSupplements = new ListView<>();
+
         // Disable selection and only allow scrolling
         oldSupplements.addEventFilter(MouseEvent.MOUSE_PRESSED, MouseEvent::consume);
+
         // Supplement field
         Label supplementsLabel = new Label("Select Supplement(s):");
         supplementChoice = new ListView<>();
+
         // Allow multiple selection for supplements
         supplementChoice.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         // Paying customer field
         payingCustomerLabel = new Label("Select Paying Customer:");
         payingCustomerLabel.setVisible(false);
@@ -465,68 +489,85 @@ public class MagazineServiceGUI {
         payingCustomerChoice.setPromptText("Select One");
         payingCustomerChoice.setStyle("-fx-pref-width: 200px");
         payingCustomerChoice.setVisible(false);
+
         // Account number field
         accountNumberLabel = new Label("Account Number:");
         accountNumberLabel.setVisible(false);
         accountNumberTextField = new TextField();
         accountNumberTextField.setVisible(false);
+
         // Card type field
         cardType = new ComboBox<>();
         cardType.setPromptText("Select Card Type");
         cardType.setStyle("-fx-pref-width: 200px");
         cardType.setVisible(false);
+
         // Create a button for submitting the data
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(customersLabel, 0, 3);
         root.add(customerChoice, 0, 4, 1, 10);
+
         // Customer type field
         root.add(customerTypeLabel, 1, 3);
         root.add(typeOfCustomerTextField, 2, 3);
+
         // Customer name field
         root.add(customerNameLabel, 1, 4);
         root.add(customersNameTextField, 2, 4);
+
         // Email field
         root.add(emailAddressLabel, 1, 5);
         root.add(emailAddressTextField, 2, 5);
+
         // Street number field
         root.add(streetNumberLabel, 1, 6);
         root.add(streetNumberTextField, 2, 6);
+
         // Street name field
         root.add(streetNameLabel, 1, 7);
         root.add(streetNameTextField, 2, 7);
+
         // Suburb field
         root.add(suburbLabel, 1, 8);
         root.add(suburbTextField, 2, 8);
+
         // Postcode field
         root.add(postcodeLabel, 1, 9);
         root.add(postCodeTextField, 2, 9);
+
         // Supplement header
         root.add(oldSupplementsHeader, 1, 10);
         root.add(oldSupplements, 1, 11);
+
         // Supplement field
         root.add(supplementsLabel, 2, 10);
         root.add(supplementChoice, 2, 11);
+
         // Paying customer field
         root.add(payingCustomerLabel, 1, 12);
         root.add(payingCustomerChoice, 2, 12);
+
         // Card type field
         root.add(cardType, 2, 12);
+
         // Account number field
         root.add(accountNumberLabel, 1, 13);
         root.add(accountNumberTextField, 2, 13);
+
         // Submit button
         root.add(submitButton, 2, 14);
     }
 
     public void deleteSupplementMode() {
-        /*
-         CANNOT DELETE A SUPPLEMENT THAT A CUSTOMER IS CURRENTLY SUBSCRIBED TO
-         */
         homePage();
+
         Label supplementsLabel = new Label("Select supplement to delete:");
         supplementsLabel.setStyle("-fx-font-weight: bold;");
+
+        // Create a listview for supplement choice
         supplementChoice = new ListView<>();
         supplementChoice.setStyle("-fx-pref-height: 400px");
 
@@ -540,6 +581,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(supplementsLabel, 0, 3);
         root.add(supplementChoice, 0, 4);
         root.add(supplementsDetails, 1, 3);
@@ -548,12 +590,12 @@ public class MagazineServiceGUI {
     }
 
     public void deleteCustomerMode() {
-        /*
-         ASSUMPTIONS: CANNOT DELETE A PAYING CUSTOMER THAT HAS ASSOCIATE CUSTOMER
-         */
         homePage();
+
         Label customersLabel = new Label("Select customer to delete:");
         customersLabel.setStyle("-fx-font-weight: bold;");
+
+        // Create a listview for customer choice
         customerChoice = new ListView<>();
         customerChoice.setStyle("-fx-pref-height: 400px");
 
@@ -567,6 +609,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(customersLabel, 0, 3);
         root.add(customerChoice, 0, 4);
         root.add(customersDetails, 1, 3);
@@ -581,6 +624,7 @@ public class MagazineServiceGUI {
         Label viewCheckHeader = new Label("Select a magazine to view:");
         viewCheckHeader.setStyle("-fx-font-weight: bold;");
 
+        // Create combobox for choosing magazine
         magazineChoice = new ComboBox<>();
         magazineChoice.setPromptText("Options");
         magazineChoice.setStyle("-fx-pref-width: 200px");
@@ -589,6 +633,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(viewCheckHeader, 1, 4);
         root.add(magazineChoice, 1, 5);
         root.add(submitButton, 1, 6);
@@ -601,6 +646,7 @@ public class MagazineServiceGUI {
         Label editCheckHeader = new Label("Select a magazine to edit:");
         editCheckHeader.setStyle("-fx-font-weight: bold;");
 
+        // Create combobox for choosing magazine
         magazineChoice = new ComboBox<>();
         magazineChoice.setPromptText("Options");
         magazineChoice.setStyle("-fx-pref-width: 200px");
@@ -609,6 +655,7 @@ public class MagazineServiceGUI {
         submitButton = new Button("Submit");
         submitButton.setMinSize(200, 25);
 
+        // Add nodes to the gridPane
         root.add(editCheckHeader, 1, 4);
         root.add(magazineChoice, 1, 5);
         root.add(submitButton, 1, 6);

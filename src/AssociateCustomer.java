@@ -1,13 +1,18 @@
 /*
-ICT373 Assignment 1 Question 2
-Ong Wei Xing 34444625
-13/6/2023
-AssociateCustomer.java
-AssociateCustomer class, only constructor required to add any associate customers
-*/
+ ICT373 Assignment 2
+ Ong Wei Xing 34444625
+ 26/7/2023
+ AssociateCustomer.java
+ AssociateCustomer class, extending Customer class to add associate customer
+ */
 
-public class AssociateCustomer extends Customer
-{
+public class AssociateCustomer extends Customer {
+    
+    public AssociateCustomer() {
+        super();
+    }
+
+    // Parameterized constructor
     public AssociateCustomer(String newName, String newEmail, Address newAddress) {
         super(newName, newEmail, newAddress);
     }
